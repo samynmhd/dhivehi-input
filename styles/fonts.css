@@ -1,0 +1,13 @@
+@font-face {
+  font-family: "MV_Faruma";
+  src: url(../fonts/Faruma.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.dhivehiFont {
+  font-family: "MV_Faruma", sans-serif;
+  direction: rtl;
+  color: black;
+  padding: 5px 10px 5px 10px;
+}

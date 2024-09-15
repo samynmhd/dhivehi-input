@@ -1,0 +1,28 @@
+{
+  "name": "dhivehi-input-handler",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc && npm run copy-assets",
+    "copy-assets": "cp -r fonts dist/ && cp -r styles dist/"
+  },
+  "keywords": [
+    "dhivehi",
+    "input",
+    "thaana",
+    "rtl"
+  ],
+  "author": "thakurubey",
+  "license": "ISC",
+  "description": "Automatically convert latin characters to dhivehi (thaana)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/samynmhd/dhivehi-input.git"
+  },
+  "devDependencies": {
+    "file-loader": "^6.2.0",
+    "typescript": "^5.6.2"
+  }
+}
