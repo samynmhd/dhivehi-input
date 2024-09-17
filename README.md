@@ -2,6 +2,15 @@
 
 Dhivehi Input Handler is a simple npm package to enable Dhivehi language input (Thaana script) in text inputs or text areas on web pages. It ensures that the input is styled correctly (right-to-left and with the appropriate font) and maps keyboard keys to the Thaana script.
 
+## Version: 2.0.0
+
+## Overview
+
+Dhivehi Input Handler provides functionality to convert Latin script input into Dhivehi script (Thaana) for web applications. This package includes:
+
+- **Dhivehi Keyboard Integration**: Automatically converts Latin characters to Dhivehi characters using a provided keyboard mapping.
+- **Content Editable Support**: Dynamically converts text inside content-editable elements (e.g., TinyMCE WYSIWYG editor) to Dhivehi as you type.
+
 ## Features
 
 - Dhivehi Input Mapping: Automatically maps standard keyboard inputs to Dhivehi characters.
