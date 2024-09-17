@@ -29,19 +29,17 @@ You can use the `dhivehi-input-handler` package in your React application by imp
 
 Import the `dhivehi-input-handler` package:
 
-        import React from "react";
-        import "dhivehi-input-handler";
-        function App() {
-            return (
-              <div className="App">
-                <textarea rows={5} cols={10} data-apply-thaana />
-                <input type="text" data-apply-thaana />
-              </div>
-            );
-
-        }
-
-        export default App;
+    import React from "react";
+    import "dhivehi-input-handler";
+    function App() {
+        return (
+          <div className="App">
+            <textarea rows={5} cols={10} data-apply-thaana />
+            <input type="text" data-apply-thaana />
+          </div>
+        );
+    }
+    export default App;
 
 ## Manual Initialization (Optional)
 
@@ -49,22 +47,20 @@ If you prefer to initialize manually, you can use the `initDhivehiInputObserver`
 
 Next.js
 
-      "use client";
-      import { initDhivehiInputObserver } from "dhivehi-input-handler";
-      import { useEffect } from "react";
-
-      export default function Home() {
-        useEffect(() => {
-          initDhivehiInputObserver();
-        }, []);
-
-        return (
-          <div>
-            <input type="text" data-apply-thaana />
-            <textarea data-apply-thaana />
-          </div>
-        );
-      }
+    "use client";
+    import { initDhivehiInputObserver } from "dhivehi-input-handler";
+    import { useEffect } from "react";
+    export default function Home() {
+      useEffect(() => {
+        initDhivehiInputObserver();
+      }, []);
+      return (
+        <div>
+          <input type="text" data-apply-thaana />
+          <textarea data-apply-thaana />
+        </div>
+      );
+    }
 
 # Integration with TinyMCE React
 
