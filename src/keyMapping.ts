@@ -29,16 +29,6 @@ const dhivehiKeyMap: { [key: string]: string } = {
   ",": "،",
   // ".": "ން",
   "?": "؟",
-  "1": "1",
-  "2": "2",
-  "3": "3",
-  "4": "4",
-  "5": "5",
-  "6": "6",
-  "7": "7",
-  "8": "8",
-  "9": "9",
-  "0": "10",
   //capital letters
   A: "ާ",
   B: "ޞ",
@@ -67,6 +57,56 @@ const dhivehiKeyMap: { [key: string]: string } = {
   Y: "ޠ",
   Z: "ޡ",
 };
+
+// function handle contentEditable elements
+export function handleContentEditable(element: HTMLElement): void {
+  const nodes = element.childNodes;
+
+  nodes.forEach((node) => {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const text = node.textContent || "";
+
+      // Create a range to track the caret position
+      const selection = element.ownerDocument?.getSelection();
+      let caretPosition = text.length; // Default caret to end if no selection
+
+      // Check if there's a valid selection and it's within our element
+      if (selection && selection.rangeCount > 0) {
+        const currentRange = selection.getRangeAt(0);
+        if (currentRange.startContainer === node) {
+          caretPosition = currentRange.startOffset; // Get current caret position
+        }
+      }
+
+      // Replace Latin characters with Dhivehi characters
+      const updatedText = text
+        .split("")
+        .map((char) => dhivehiKeyMap[char] || char)
+        .join("");
+
+      if (updatedText !== text) {
+        node.textContent = updatedText;
+
+        // Restore the caret position after modifying the text
+        const newRange = document.createRange();
+        const newSelection = element.ownerDocument?.getSelection();
+
+        // Ensure caret position doesn't exceed the new text length
+        const newCaretPosition = Math.min(caretPosition, updatedText.length);
+
+        if (newSelection) {
+          newRange.setStart(node, newCaretPosition);
+          newRange.collapse(true);
+          newSelection.removeAllRanges();
+          newSelection.addRange(newRange);
+        }
+      }
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      handleContentEditable(node as HTMLElement);
+    }
+  });
+}
+
 // Function to handle input events and convert Latin characters to Dhivehi characters
 function handleInput(event: Event): void {
   const inputElement = event.target as HTMLInputElement | HTMLTextAreaElement;
@@ -91,6 +131,14 @@ export function applyDhivehiInput(
   inputElement: HTMLInputElement | HTMLTextAreaElement
 ): void {
   inputElement.classList.add("dhivehiFont");
+
+  // Handle contentEditable elements
+  if (inputElement.isContentEditable) {
+    inputElement.addEventListener("input", () =>
+      handleContentEditable(inputElement)
+    );
+    return;
+  }
 
   // Remove existing listeners to avoid multiple bindings
   inputElement.removeEventListener("input", handleInput);
