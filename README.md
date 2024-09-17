@@ -31,6 +31,7 @@ Import the `dhivehi-input-handler` package:
 
     import React from "react";
     import "dhivehi-input-handler";
+
     function App() {
         return (
           <div className="App">
@@ -50,6 +51,7 @@ Next.js
     "use client";
     import { initDhivehiInputObserver } from "dhivehi-input-handler";
     import { useEffect } from "react";
+
     export default function Home() {
       useEffect(() => {
         initDhivehiInputObserver();
